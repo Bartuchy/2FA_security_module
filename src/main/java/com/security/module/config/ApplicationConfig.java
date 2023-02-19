@@ -1,6 +1,6 @@
-package com.security.security.config;
+package com.security.module.config;
 
-import com.security.security.user.UserRepository;
+import com.security.module.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

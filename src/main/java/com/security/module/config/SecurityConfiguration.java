@@ -1,4 +1,4 @@
-package com.security.security.config;
+package com.security.module.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.security.security.user.Role.ADMIN;
-import static com.security.security.user.Role.USER;
+import static com.security.module.config.SecurityUtil.*;
+
 
 @Configuration
 @EnableWebSecurity
@@ -25,10 +25,10 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**")
+                .requestMatchers(PERMITTED_ALL_PATHS)
                 .permitAll()
-                .requestMatchers("/api/v1/demo-controller/user").hasAnyAuthority(USER.name(), ADMIN.name())
-                .requestMatchers("/api/v1/demo-controller/admin").hasAuthority(ADMIN.name())
+                .requestMatchers(USER_PATHS).hasAnyAuthority(USER, ADMIN)
+                .requestMatchers(ADMIN_PATHS).hasAuthority(ADMIN)
                 .anyRequest()
                 .authenticated()
                 .and()
