@@ -1,0 +1,13 @@
+package com.security.module.config.mailing;
+
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+public class Email {
+    private String from;
+    private String to;
+    private String subject;
+    private String body;
+}

@@ -1,0 +1,32 @@
+package com.security.module.config.mailing;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import org.springframework.mail.javamail.JavaMailSender;
+
+@Service
+@RequiredArgsConstructor
+public class EmailSender {
+    private final JavaMailSender mailSender;
+
+    @Async
+    public void sendMail(
+            Email email
+    ) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+        mimeMessageHelper.setTo(email.getTo());
+        mimeMessageHelper.setFrom(email.getFrom());
+        mimeMessageHelper.setSubject(email.getSubject());
+        mimeMessageHelper.setText(email.getBody(), true);
+
+        mailSender.send(mimeMessage);
+    }
+
+
+}
