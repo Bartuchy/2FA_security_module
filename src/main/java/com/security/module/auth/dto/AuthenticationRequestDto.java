@@ -1,4 +1,4 @@
-package com.security.module.auth;
+package com.security.module.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest {
-    private String firstName;
-    private String lastname;
+public class AuthenticationRequestDto {
     private String email;
     private String password;
 }

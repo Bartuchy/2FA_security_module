@@ -1,4 +1,4 @@
-package com.security.module.config;
+package com.security.module.config.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
