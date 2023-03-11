@@ -18,7 +18,7 @@ public class Role {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")

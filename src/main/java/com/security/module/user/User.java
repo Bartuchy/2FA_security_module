@@ -21,11 +21,13 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+    private Boolean isEnabled = false;
+    private Boolean isNonLocked = false;
 
     @ManyToOne(targetEntity = Role.class)
     private Role role;
@@ -52,7 +54,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return isNonLocked;
     }
 
     @Override
@@ -62,6 +64,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }
