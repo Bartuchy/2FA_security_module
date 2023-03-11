@@ -1,4 +1,4 @@
-package com.security.module.config.demo;
+package com.security.module.demo;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,4 +18,5 @@ public class DemoController {
     public ResponseEntity<String> sayHelloUser() {
         return ResponseEntity.ok("Hello from secured endpoint user");
     }
+
 }

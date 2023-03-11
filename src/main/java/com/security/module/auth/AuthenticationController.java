@@ -1,11 +1,14 @@
 package com.security.module.auth;
 
+import com.security.module.auth.dto.AuthenticationRequestDto;
+import com.security.module.auth.dto.AuthenticationResponseDto;
+import com.security.module.auth.dto.RegisterRequestDto;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -15,18 +18,26 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("register")
-    public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
-    ) {
-        AuthenticationResponse response = service.register(request);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Void> register(
+            @RequestBody RegisterRequestDto request
+    ) throws MessagingException, IOException {
+        service.register(request);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
+    public ResponseEntity<AuthenticationResponseDto> authenticate(
+            @RequestBody AuthenticationRequestDto request
     ) {
-        AuthenticationResponse response = service.authenticate(request);
+        AuthenticationResponseDto response = service.authenticate(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("confirm-registration")
+    public ResponseEntity<Void> confirmRegistration(
+            @RequestParam String confirmationToken
+    ) {
+        service.confirmRegistration(confirmationToken);
+        return ResponseEntity.ok().build();
     }
 }
