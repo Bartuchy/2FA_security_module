@@ -23,7 +23,7 @@ public class EmailSender {
         mimeMessageHelper.setTo(email.getTo());
         mimeMessageHelper.setFrom(email.getFrom());
         mimeMessageHelper.setSubject(email.getSubject());
-        mimeMessageHelper.setText(email.getBody(), true);
+        mimeMessageHelper.setText(email.getContent(), true);
 
         mailSender.send(mimeMessage);
     }

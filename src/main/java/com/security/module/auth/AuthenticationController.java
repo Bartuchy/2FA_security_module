@@ -15,13 +15,13 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("register")
     public ResponseEntity<Void> register(
             @RequestBody RegisterRequestDto request
     ) throws MessagingException, IOException {
-        service.register(request);
+        authenticationService.register(request);
         return ResponseEntity.ok().build();
     }
 
@@ -29,7 +29,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponseDto> authenticate(
             @RequestBody AuthenticationRequestDto request
     ) {
-        AuthenticationResponseDto response = service.authenticate(request);
+        AuthenticationResponseDto response = authenticationService.authenticate(request);
         return ResponseEntity.ok(response);
     }
 
@@ -37,7 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<Void> confirmRegistration(
             @RequestParam String confirmationToken
     ) {
-        service.confirmRegistration(confirmationToken);
+        authenticationService.confirmRegistration(confirmationToken);
         return ResponseEntity.ok().build();
     }
 }

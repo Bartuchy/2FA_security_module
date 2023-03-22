@@ -4,7 +4,7 @@ import com.security.module.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Builder
 @Getter
@@ -21,12 +21,12 @@ public class ConfirmationToken {
     private String token;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     @Column(nullable = false)
-    private LocalDateTime expiresAt;
+    private Instant expiresAt;
 
-    private LocalDateTime confirmedAt;
+    private Instant confirmedAt;
 
     @ManyToOne
     private User user;
