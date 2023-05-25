@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Optional;
 
 @Repository
@@ -20,5 +20,5 @@ public interface ConfirmationTokenRepository
     @Transactional
     @Modifying
     @Query("UPDATE ConfirmationToken c SET c.confirmedAt = ?2 WHERE c.token = ?1")
-    void updateConfirmedAt(String token, LocalDateTime confirmedAt);
+    void updateConfirmedAt(String token, Instant confirmedAt);
 }

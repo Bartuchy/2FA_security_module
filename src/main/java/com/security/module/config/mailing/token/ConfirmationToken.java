@@ -15,7 +15,7 @@ import java.time.Instant;
 public class ConfirmationToken {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String token;

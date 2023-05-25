@@ -12,7 +12,7 @@ import java.io.IOException;
 public class EmailFactory {
 
     @Value("${mail.host}")
-    public static String SYSTEM_MAIL;
+    public String systemMail;
 
     public Email createConfirmationEmail(String to, String firstname, String token) throws IOException {
         String content = ResourceReader.readHTMLFromResourcesAsString("templates/mail_template.html");
@@ -25,11 +25,7 @@ public class EmailFactory {
                 .to(to)
                 .subject("Registration confirmation")
                 .content(content)
-                .from(SYSTEM_MAIL)
+                .from(systemMail)
                 .build();
-    }
-
-    public Email createPasswordResetEmail(String to, String firstname, String token) throws IOException {
-        return Email.builder().build();
     }
 }
